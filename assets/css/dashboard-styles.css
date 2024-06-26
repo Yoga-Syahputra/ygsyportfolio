@@ -1,0 +1,195 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+/* Setup */
+:root {
+    /* Color Styles */
+    --primary: #F4F2EF;
+    --secondary: #213E60;
+    --tertiary: #CF7914;
+    --quaternary: #D9D9D9;
+    --quinary: #000000;
+
+    /* Typography */
+    /* Font Size Mobile */
+    --h1-mobile: 32px;
+    --h2-mobile: 24px;
+    --h3-mobile: 20px;
+    --h4-mobile: 18px;
+    --h5-mobile: 16px;
+    --h6-mobile: 14px;
+    --p-mobile: 14px;
+    --a-mobile: 14px;
+
+    /* Font Size Desktop */
+    --h1: 64px;
+    --h2: 48px;
+    --h3: 32px;
+    --h4: 24px;
+    --h5: 20px;
+    --h6: 18px;
+    --p: 18px;
+    --a: 18px;
+
+    --text-medium: 18px;
+    --text-regular: 16px;
+    --text-light: 14px;
+
+    /* Font Weight */
+    --bold: 900;
+    --medium: 600;
+    --regular: 400;
+    --light: 300;
+}
+
+/* General CSS */
+body {
+     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1043%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(244%2c 242%2c 239%2c 1)'%3e%3c/rect%3e%3cpath d='M151.4948854527354 24.60548230569816L79.50267316784299-61.19149532362735-13.196687133699072 89.69531191837403z' fill='rgba(207%2c 121%2c 20%2c 1)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M176.58184843063347 109.68649784884414L116.37603290702303-47.155013802685744 19.740336779103586 169.89231337245457z' fill='rgba(207%2c 121%2c 20%2c 1)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M39.79283675108641-35.91539028113941L-22.94965968200853 145.7394754738251 142.4980428240424 116.56658162578064z' fill='rgba(207%2c 121%2c 20%2c 1)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M1473.7177582875763 81.72615320958658L1337.9519465795252-54.29868085524569 1291.6448708022695 107.19328406239188z' fill='rgba(207%2c 121%2c 20%2c 1)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1391.359662638478 156.2533004680478L1492.0245958239848 107.15573202767108 1368.0457765706665-19.292883530400616z' fill='rgba(207%2c 121%2c 20%2c 1)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M1464.0711328844836-4.77419326888846L1368.068395205847-62.45845765881454 1329.5433674602762 110.38778105410339z' fill='rgba(207%2c 121%2c 20%2c 1)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M134.33990024690115 566.990069996742L167.08553117584762 459.8839373288821-9.946483290415586 464.3185572693924z' fill='rgba(207%2c 121%2c 20%2c 1)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M51.39350145471068 635.9128590902892L174.26092332673124 521.3371345997894-63.18222303578913 513.0454372182686z' fill='rgba(207%2c 121%2c 20%2c 1)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M-41.45223556058076 528.6566557572995L24.379712696176256 619.2665591272936 127.37859362278891 475.213685057161z' fill='rgba(207%2c 121%2c 20%2c 1)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1484.4490773881391 500.14361039824905L1438.8945733636494 397.8265191422778 1308.1961884919374 517.3168208069978z' fill='rgba(207%2c 121%2c 20%2c 1)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1281.4219665273133 587.0660536627246L1448.5016449491832 604.6268354916903 1298.982748356279 419.98637524085467z' fill='rgba(207%2c 121%2c 20%2c 1)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M1473.2551105565499 531.288025774122L1339.883937328882 392.9144688241523 1290.7654909354624 553.5736678259423z' fill='rgba(207%2c 121%2c 20%2c 1)' class='triangle-float3'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1043'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-position: center;
+    font-family: 'Open Sans', sans-serif;
+    padding-top: 20px;
+    color: var(--secondary);
+}
+
+.container {
+    max-width: 600px;
+    background: var(--primary);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container .text-center {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: var(--bold);
+    color: var(--secondary);
+}
+
+.card {
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: var(--tertiary);
+    color: var(--primary);
+    font-weight: var(--medium);
+}
+
+.card-body {
+    background-color: var(--primary);
+}
+
+.btn-primary,
+.btn-danger {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: var(--a);
+    font-weight: var(--medium);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--secondary);
+    border: 2px solid var(--secondary);
+    color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--tertiary);
+    border-color: var(--tertiary);
+}
+
+.btn-danger {
+    background-color: var(--quinary);
+    border: 2px solid var(--quinary);
+    color: var(--primary);
+}
+
+.btn-danger:hover {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.modal-content {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    background-color: var(--tertiary);
+    color: var(--primary);
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.modal-body {
+    background-color: var(--primary);
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.form-label {
+    font-weight: var(--medium);
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid var(--quaternary);
+}
+
+.progress {
+    height: 20px;
+    border-radius: 5px;
+    background-color: var(--quaternary);
+}
+
+.progress-bar {
+    background-color: var(--tertiary);
+    font-weight: var(--medium);
+}
+
+#progress {
+    background-color: var(--tertiary);
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    width: 50px; /* Adjust width */
+    height: 50px; /* Adjust height */
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--secondary);
+    cursor: pointer;
+    transition: opacity 0.3s, visibility 0.3s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#progress.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+#progress-value {
+    display: block;
+    height: calc(100% - 10px); /* Adjust height */
+    width: calc(100% - 10px); /* Adjust width */
+    background-color: var(--primary);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 25px; /* Adjust font size */
+    color: var(--secondary);
+}

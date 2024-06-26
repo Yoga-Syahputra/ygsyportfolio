@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/auth-styles.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" href="assets/img/ygsyp-favicon.png">
+    <title>Login</title>
+</head>
+<body>
+    <div class="background">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <section class="login-section">
+        <div class="container" data-aos="fade-up">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h2 class="text-center mb-4">ARE YOU  <a href="index.html" class="underline-link">YGSYP</a>?</h2>
+                    <form id="login-form">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Your Password" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-custom">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Firebase Configuration and Initialization -->
+    <script type="module">
+        // Import the Firebase modules we need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCVvniHls7At9Izbz9LffU5FRB47Au29yU",
+            authDomain: "ygsyportfolio.firebaseapp.com",
+            projectId: "ygsyportfolio",
+            storageBucket: "ygsyportfolio.appspot.com",
+            messagingSenderId: "713286800029",
+            appId: "1:713286800029:web:3985a3232743186005fa74",
+            measurementId: "G-2TCF7MF9VB"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+
+        // Login function
+        document.getElementById('login-form').addEventListener('submit', async function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                const uid = user.uid; // Get the UID of the signed-in user
+                alert('Login successful');
+
+                // Log login activity to Firebase Realtime Database
+                logLoginActivity(uid, email);
+
+                // Redirect to dashboard.html or perform other actions based on UID
+                window.location.href = 'dashboard.html';
+            } catch (error) {
+                alert(error.message);
+            }
+        });
+
+        // Function to log login activity to Firebase Realtime Database
+        function logLoginActivity(uid, email) {
+            const loginActivityRef = ref(database, 'login-activities/' + uid); // Reference with UID to avoid multiple entries for the same user
+            set(loginActivityRef, {
+                email: email,
+                timestamp: Date.now() // JavaScript timestamp for simplicity
+            });
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybGPSmE6oegp7ubaqga3F7YlRJmZZclzw0R8GgnM/z3pvlq2O" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuF74xgGEQx2odtK0hU3R5aB1dYMwq2E47s2IjBNIIx6wJ6cZOJ2VUy9p+0fiI6V" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    
+</body>
+</html>

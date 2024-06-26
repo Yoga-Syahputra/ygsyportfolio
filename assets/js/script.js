@@ -16,7 +16,7 @@ window.addEventListener('scroll', toggleNavbarBackground);
 
 // Popup
 document.addEventListener('DOMContentLoaded', (event) => {
-    const captions = ["Frontend Developer", "System Administrator", "CompSci Student", "English Coach"];
+    const captions = ["Front End Developer", "System Administrator", "UI/UX Designer"];
     let currentCaption = 0;
     const captionElement = document.getElementById('caption');
 
@@ -40,33 +40,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 // Typewriter effect
-document.addEventListener('DOMContentLoaded', (event) => {
-    const captions = ["Frontend Developer", "System Administrator", "CompSci Student", "English Coach"];
-    let currentCaption = 0;
-    const typewriterElement = document.getElementById('typewriter');
-
-    function typeWriterEffect() {
-        let caption = captions[currentCaption];
-        let index = 0;
-        typewriterElement.textContent = '';
-
-        function type() {
-            if (index < caption.length) {
-                typewriterElement.textContent += caption.charAt(index);
-                index++;
-                setTimeout(type, 100); // Adjust typing speed here
-            } else {
-                setTimeout(() => {
-                    currentCaption = (currentCaption + 1) % captions.length;
-                    typeWriterEffect();
-                }, 5000); // Adjust pause time after typing here
-            }
-        }
-
-        type();
-    }
-
-    typeWriterEffect();
+var typing = new Typed (".typing", {
+    strings: ["Front End Developer", "UI/UX Designer", "Sysadmin", "Video Editor", "Data Scientist"],
+    typeSpeed: 100,
+    backSpeed: 50,
+    loop: true,
+    showCursor: false,
 });
 
 // Avatar
@@ -136,6 +115,54 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Hire Me
+document.addEventListener('DOMContentLoaded', function() {
+    // Select all "Hire Me" buttons
+    const hireButtons = document.querySelectorAll('.hire-me-btn');
 
+    // Add click event listeners to each button
+    hireButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default button behavior
 
+            // Get the subject and message from data attributes
+            const subject = this.getAttribute('data-subject');
+            const message = this.getAttribute('data-message');
 
+            // Set the subject and message in localStorage
+            localStorage.setItem('hireSubject', subject);
+            localStorage.setItem('hireMessage', message);
+
+            // Redirect to contact.html after setting subject and message
+            window.location.href = 'contact.html';
+        });
+    });
+});
+
+// Scroll to top
+document.addEventListener("DOMContentLoaded", function() {
+    const progress = document.getElementById("progress");
+    const progressValue = document.getElementById("progress-value");
+
+    window.addEventListener("scroll", function() {
+        if (window.scrollY > 100) {
+            progress.classList.add("show");
+        } else {
+            progress.classList.remove("show");
+        }
+
+        // Hide button when bottom of the page is reached
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            progress.classList.remove("show");
+        }
+    });
+
+    progress.addEventListener("click", function() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+});
+
+  

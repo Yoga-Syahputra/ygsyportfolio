@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/assets/css/blog-styles.css">
+    <link rel="stylesheet" href="/assets/css/certificates-styles.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="icon" href="assets/img/ygsyp-favicon.png">
-    <title>Blog</title>
+    <title>Certificates</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -38,19 +38,23 @@
             </div>
         </div>
     </nav>
-
-    <section class="blog-section mt-5">
+    
+    <section class="certificates-section mt-5">
         <div class="container">
             <div class="text-container" data-aos="fade-up">
-                <h1>BLOG</h1>
+                <h1>CERTIFICATES</h1>
                 <div class="custom-line"></div>
-                <h5>Life Update</h5>
+                <h5>Printable Milestones of Mine</h5>
             </div>
-            <div class="row" id="blog-posts">
-                <!-- Blog posts will be dynamically added here -->
+            <div class="row" id="certificates-list" data-aos="fade-up">
+                <!-- Certificate cards will be dynamically added here -->
             </div>
         </div>
     </section>
+
+    <div id="progress">
+        <span id="progress-value">&#x1F815;</span>
+    </div>
 
     <footer>
         <div class="footer-content">
@@ -65,10 +69,11 @@
     </footer>
 
     <script type="module">
+        // Import the functions from the SDKs
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
         import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
+    
         // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCVvniHls7At9Izbz9LffU5FRB47Au29yU",
@@ -79,88 +84,108 @@
             appId: "1:713286800029:web:3985a3232743186005fa74",
             measurementId: "G-2TCF7MF9VB"
         };
-
+    
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const database = getDatabase(app);
+    
+        // Function to fetch and display certificates data
+        function fetchCertificates() {
+    const certificatesRef = ref(database, 'certificates');
 
-        // Function to fetch and display truncated blog posts
-        async function fetchBlogPosts() {
-    const blogPostsRef = ref(database, 'blog-posts');
-    onValue(blogPostsRef, (snapshot) => {
-        const blogPostsContainer = document.getElementById('blog-posts');
-        blogPostsContainer.innerHTML = ''; // Clear previous content
+    // Attach an asynchronous callback to read the data
+    onValue(certificatesRef, (snapshot) => {
+        const certificatesData = snapshot.val();
+        if (certificatesData) {
+            // Clear existing certificate list if any
+            const certificatesList = document.getElementById('certificates-list');
+            certificatesList.innerHTML = '';
 
-        const posts = [];
+            const certificates = [];
 
-        snapshot.forEach((childSnapshot) => {
-            const post = childSnapshot.val();
-            post.key = childSnapshot.key; // Add the key to the post object
-            posts.push(post);
-        });
+            // Collect all certificates in an array
+            Object.keys(certificatesData).forEach(key => {
+                const certificate = certificatesData[key];
+                certificate.key = key; // Add the key to the certificate object
+                certificates.push(certificate);
+            });
 
-        // Sort posts alphabetically by title
-        posts.sort((a, b) => a.title.localeCompare(b.title));
+            // Sort certificates alphabetically by title
+            certificates.sort((a, b) => a.title.localeCompare(b.title));
 
-        // Append sorted posts to the container
-        posts.forEach((post) => {
-            const truncatedDescription = truncateDescription(post.description, 100); // Truncate description
-            const postCard = document.createElement('div');
-            postCard.classList.add('col-md-4', 'mb-4');
+            // Append sorted certificates to the container
+            certificates.forEach((certificate) => {
+                const certificateCard = document.createElement('div');
+                certificateCard.classList.add('certificate-card', 'animate__animated', 'animate__fadeInUp');
 
-            postCard.innerHTML = `
-                <div class="card">
-                    <img src="${post.imageUrl}" class="card-img-top" alt="${post.title}">
-                    <div class="card-body">
-                        <h5 class="card-title">${post.title}</h5>
-                        <p class="card-text">${truncatedDescription}</p>
-                        <a href="/blog-post.html?id=${post.key}" class="btn btn-custom">Read More</a>
+                certificateCard.innerHTML = `
+                    <div class="card">
+                        <img src="${certificate.imageUrl}" class="card-img-top" alt="${certificate.title}">
+                        <div class="card-body">
+                            <h5 class="card-title">${certificate.title}</h5>
+                            <p class="card-text">${certificate.description}</p>
+                            <a href="${certificate.certificateLink}" class="btn btn-custom">View Certificate</a>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
 
-            blogPostsContainer.appendChild(postCard);
-        });
+                certificatesList.appendChild(certificateCard);
+            });
+
+            // After appending certificates, call animateCertificates to add animations
+            animateCertificates();
+        } else {
+            console.error("No certificates data available.");
+        }
+    }, (errorObject) => {
+        console.error("The read failed: " + errorObject.code);
     });
 }
 
-
-        // Function to truncate description
-        function truncateDescription(description, maxLength) {
-            if (description.length > maxLength) {
-                return description.substring(0, maxLength) + '...';
-            }
-            return description;
+    
+        // JavaScript to animate certificate cards
+        function animateCertificates() {
+            const certificateCards = document.querySelectorAll('.certificate-card');
+    
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+    
+            certificateCards.forEach(card => {
+                observer.observe(card);
+            });
         }
-
+    
         // Check if DOM is loaded before executing scripts
         document.addEventListener("DOMContentLoaded", function() {
-            fetchBlogPosts();
+            fetchCertificates();
         });
-
     </script>
-
-
     
-    <!-- Bootstrap JS and dependencies -->
+    
+
+  <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         AOS.init();
     </script>    
 
     <!-- Custom JavaScript -->
-    <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/certificates-script.js" type="module"></script>
 </body>
 </html>
-
-
     
-</body>
-</html>
+      

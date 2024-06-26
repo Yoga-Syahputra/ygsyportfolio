@@ -1,0 +1,355 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+/* Setup */
+:root {
+    /* Color Styles */
+    --primary: #F4F2EF;
+    --secondary: #213E60;
+    --tertiary: #CF7914;
+    --quaternary: #D9D9D9;
+    --quinary: #000000;
+
+    /* Typography */
+    
+    /* Font Size Mobile */
+    --h1-mobile: 32px;
+    --h2-mobile: 24px;
+    --h3-mobile: 20px;
+    --h4-mobile: 18px;
+    --h5-mobile: 16px;
+    --h6-mobile: 14px;
+    --p-mobile: 14px;
+    --a-mobile: 14px;
+
+    /* Font Size Desktop */
+    --h1: 64px;
+    --h2: 48px;
+    --h3: 32px;
+    --h4: 24px;
+    --h5: 20px;
+    --h6: 18px;
+    --p: 18px;
+    --a: 18px;
+
+    --text-medium: 18px;
+    --text-regular: 16px;
+    --text-light: 14px;
+
+    /* Font Weight */
+    --bold: 900;
+    --medium: 600;
+    --regular: 400;
+    --light: 300;
+}
+
+/* General CSS */
+body {
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 20px;
+}
+
+@keyframes move {
+    100% {
+        transform: translate3d(0, 0, 1px) rotate(360deg);
+    }
+}
+
+.background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: #f4f2ef;
+    overflow: hidden;
+}
+
+.background span {
+    width: 20vmin;
+    height: 20vmin;
+    border-radius: 20vmin;
+    backface-visibility: hidden;
+    position: absolute;
+    animation: move;
+    animation-duration: 45;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.background span:nth-child(0) {
+    color: #cf7914;
+    top: 10%;
+    left: 89%;
+    animation-duration: 27s;
+    animation-delay: -47s;
+    transform-origin: 13vw 24vh;
+    box-shadow: -40vmin 0 5.827750911822156vmin currentColor;
+}
+.background span:nth-child(1) {
+    color: #cf7914;
+    top: 91%;
+    left: 74%;
+    animation-duration: 44s;
+    animation-delay: -27s;
+    transform-origin: 25vw 6vh;
+    box-shadow: 40vmin 0 5.807413061090646vmin currentColor;
+}
+.background span:nth-child(2) {
+    color: #cf7914;
+    top: 68%;
+    left: 73%;
+    animation-duration: 52s;
+    animation-delay: -29s;
+    transform-origin: 5vw -7vh;
+    box-shadow: -40vmin 0 5.430766299769967vmin currentColor;
+}
+.background span:nth-child(3) {
+    color: #cf7914;
+    top: 87%;
+    left: 86%;
+    animation-duration: 8s;
+    animation-delay: -9s;
+    transform-origin: 10vw -15vh;
+    box-shadow: -40vmin 0 5.039879386130428vmin currentColor;
+}
+.background span:nth-child(4) {
+    color: #cf7914;
+    top: 31%;
+    left: 23%;
+    animation-duration: 54s;
+    animation-delay: -23s;
+    transform-origin: -18vw -23vh;
+    box-shadow: -40vmin 0 5.418241180033316vmin currentColor;
+}
+.background span:nth-child(5) {
+    color: #cf7914;
+    top: 66%;
+    left: 24%;
+    animation-duration: 51s;
+    animation-delay: -11s;
+    transform-origin: 4vw 3vh;
+    box-shadow: 40vmin 0 5.574212137689735vmin currentColor;
+}
+.background span:nth-child(6) {
+    color: #cf7914;
+    top: 41%;
+    left: 33%;
+    animation-duration: 52s;
+    animation-delay: -20s;
+    transform-origin: 0vw 5vh;
+    box-shadow: 40vmin 0 5.036741599559829vmin currentColor;
+}
+.background span:nth-child(7) {
+    color: #cf7914;
+    top: 66%;
+    left: 49%;
+    animation-duration: 30s;
+    animation-delay: -48s;
+    transform-origin: 13vw -17vh;
+    box-shadow: -40vmin 0 5.890335562689971vmin currentColor;
+}
+.background span:nth-child(8) {
+    color: #cf7914;
+    top: 96%;
+    left: 14%;
+    animation-duration: 15s;
+    animation-delay: -10s;
+    transform-origin: 7vw 17vh;
+    box-shadow: -40vmin 0 5.172019167387019vmin currentColor;
+}
+.background span:nth-child(9) {
+    color: #cf7914;
+    top: 53%;
+    left: 50%;
+    animation-duration: 7s;
+    animation-delay: -35s;
+    transform-origin: 22vw 16vh;
+    box-shadow: 40vmin 0 5.714372227075471vmin currentColor;
+}
+.background span:nth-child(10) {
+    color: #cf7914;
+    top: 28%;
+    left: 85%;
+    animation-duration: 37s;
+    animation-delay: -5s;
+    transform-origin: 14vw -15vh;
+    box-shadow: -40vmin 0 5.443544093077699vmin currentColor;
+}
+.background span:nth-child(11) {
+    color: #cf7914;
+    top: 74%;
+    left: 71%;
+    animation-duration: 21s;
+    animation-delay: -40s;
+    transform-origin: 4vw -3vh;
+    box-shadow: 40vmin 0 5.085697878669947vmin currentColor;
+}
+.background span:nth-child(12) {
+    color: #cf7914;
+    top: 29%;
+    left: 57%;
+    animation-duration: 13s;
+    animation-delay: -18s;
+    transform-origin: 2vw -7vh;
+    box-shadow: -40vmin 0 5.76908883207288vmin currentColor;
+}
+.background span:nth-child(13) {
+    color: #cf7914;
+    top: 84%;
+    left: 72%;
+    animation-duration: 29s;
+    animation-delay: -21s;
+    transform-origin: -13vw -6vh;
+    box-shadow: 40vmin 0 5.528100714108306vmin currentColor;
+}
+.background span:nth-child(14) {
+    color: #cf7914;
+    top: 13%;
+    left: 74%;
+    animation-duration: 44s;
+    animation-delay: -45s;
+    transform-origin: 12vw 23vh;
+    box-shadow: -40vmin 0 5.4473915371256005vmin currentColor;
+}
+.background span:nth-child(15) {
+    color: #cf7914;
+    top: 11%;
+    left: 97%;
+    animation-duration: 23s;
+    animation-delay: -15s;
+    transform-origin: -15vw 11vh;
+    box-shadow: 40vmin 0 5.1669047641610035vmin currentColor;
+}
+.background span:nth-child(16) {
+    color: #cf7914;
+    top: 64%;
+    left: 90%;
+    animation-duration: 10s;
+    animation-delay: -33s;
+    transform-origin: -2vw 7vh;
+    box-shadow: 40vmin 0 5.652881556855331vmin currentColor;
+}
+.background span:nth-child(17) {
+    color: #cf7914;
+    top: 36%;
+    left: 32%;
+    animation-duration: 21s;
+    animation-delay: -21s;
+    transform-origin: -12vw 12vh;
+    box-shadow: 40vmin 0 5.376859413762065vmin currentColor;
+}
+.background span:nth-child(18) {
+    color: #cf7914;
+    top: 90%;
+    left: 97%;
+    animation-duration: 19s;
+    animation-delay: -37s;
+    transform-origin: -22vw -9vh;
+    box-shadow: -40vmin 0 5.907703485054091vmin currentColor;
+}
+.background span:nth-child(19) {
+    color: #cf7914;
+    top: 65%;
+    left: 33%;
+    animation-duration: 40s;
+    animation-delay: -17s;
+    transform-origin: -15vw -2vh;
+    box-shadow: 40vmin 0 5.628208036324749vmin currentColor;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5); 
+        backdrop-filter: blur(10px); 
+        -webkit-backdrop-filter: blur(10px); 
+        z-index: 1000; 
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%; 
+        padding-top: 80px; 
+    }
+
+    .navbar-nav .nav-link {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+.login-section {
+    padding: 80px 0;
+    background-color: var(--primary);
+}
+
+.login-section .text-center {
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--h2);
+    font-weight: var(--bold);
+    margin-bottom: 40px;
+    color: var(--secondary);
+}
+
+.text-center .underline-link {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--tertiary);
+    text-decoration: underline;
+    transition: transform 0.3s ease; 
+}
+
+.text-center .underline-link:hover {
+    transform: scale(1.5);
+    color: var(--secondary);
+}
+
+.login-section .form-label {
+    font-size: var(--p);
+    color: var(--secondary);
+    font-weight: var(--medium);
+}
+
+.login-section .form-control {
+    border: 1px solid var(--quaternary);
+    border-radius: 4px;
+    box-shadow: none;
+    font-size: var(--text-regular);
+    padding: 10px;
+}
+
+.login-section .btn-custom {
+    background-color: var(--secondary);
+    color: var(--primary);
+    font-size: var(--text-regular);
+    font-weight: var(--medium);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.login-section .btn-custom:hover {
+    background-color: var(--tertiary);
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .login-section .row {
+        flex-direction: column;
+    }
+
+    .login-section .col-md-6 {
+        max-width: 100%;
+        flex: 0 0 100%;
+        margin-bottom: 20px;
+    }
+}
+
+
