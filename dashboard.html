@@ -200,7 +200,7 @@
     <!-- Firebase SDK -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getDatabase, ref, onValue, push, set, remove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+        import { getDatabase, ref, onValue, push, set, update, remove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
         // Firebase configuration
@@ -465,29 +465,24 @@
 
         // Function to add or edit a skill
         window.handleSkillForm = function handleSkillForm(event, mode) {
-            event.preventDefault();
-            const form = document.getElementById('skillsForm');
-            const skillName = form.skillName.value;
-            const skillLevel = form.skillLevel.value;
+    event.preventDefault();
+    const form = document.getElementById('skillsForm');
+    const skillName = form.skillName.value.trim();  // Trim spaces
+    const skillLevel = parseInt(form.skillLevel.value, 10);  // Parse integer
 
-            if (mode === 'create') {
-                const skillRef = ref(database, 'skills/' + skillName);
-                set(skillRef, parseInt(skillLevel)).then(() => {
-                    $('#skillsModal').modal('hide');
-                    form.reset();
-                }).catch((error) => {
-                    console.error('Error adding skill: ', error);
-                });
-            } else if (mode === 'edit') {
-                const skillRef = ref(database, 'skills//' + skillName);
-                set(skillRef, parseInt(skillLevel)).then(() => {
-                    $('#skillsModal').modal('hide');
-                    form.reset();
-                }).catch((error) => {
-                    console.error('Error editing skill: ', error);
-                });
-            }
-        }
+    if (skillName && !isNaN(skillLevel)) {
+        const skillRef = ref(database, 'skills/' + skillName);
+        set(skillRef, skillLevel).then(() => {
+            $('#skillsModal').modal('hide');
+            form.reset();
+        }).catch((error) => {
+            console.error('Error adding/editing skill: ', error);
+        });
+    } else {
+        console.error('Invalid skill name or level');
+    }
+};
+
 
         // Function to delete a skill
         window.deleteSkill = function deleteSkill(skillName) {
