@@ -10,7 +10,6 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="icon" href="assets/img/ygsyp-favicon.png">
     <title>Contact</title>
 </head>
@@ -25,8 +24,7 @@
         <span></span>
         <span></span>
         <span></span>
-        <span></span>
-     </div>
+    </div>
 
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
@@ -59,7 +57,7 @@
                     <h2 class="text-center mb-4">REACH OUT</h2>
                     <div class="row">
                         <div class="col-md-6">
-                            <form id="contact-form" method="POST" action="/assets/form/contact.php">
+                            <form id="contact-form" method="POST">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>
                                     <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
@@ -137,15 +135,64 @@
         </div>
     </div>  
 
+    <!-- Firebase Configuration -->
+    <script type="module">
+        // Import the functions from the SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCVvniHls7At9Izbz9LffU5FRB47Au29yU",
+            authDomain: "ygsyportfolio.firebaseapp.com",
+            projectId: "ygsyportfolio",
+            storageBucket: "ygsyportfolio.appspot.com",
+            messagingSenderId: "713286800029",
+            appId: "1:713286800029:web:3985a3232743186005fa74",
+            measurementId: "G-2TCF7MF9VB"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Handle form submission
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            try {
+                await addDoc(collection(db, 'contacts'), {
+                    name: name,
+                    email: email,
+                    subject: subject,
+                    message: message,
+                    timestamp: new Date()
+                });
+                // Show success modal
+                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+                // Reset form fields
+                contactForm.reset();
+            } catch (error) {
+                // Show error modal
+                const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                errorModal.show();
+                console.error("Error adding document: ", error);
+            }
+        });
+    </script>
+
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybGPSmE6oegp7ubaqga3F7YlRJmZZclzw0R8GgnM/z3pvlq2O" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuF74xgGEQx2odtK0hU3R5aB1dYMwq2E47s2IjBNIIx6wJ6cZOJ2VUy9p+0fiI6V" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybGPSmE6o5g8U7Kc5Yj7zFGL1JsP6F8xXlz9WkDkBiDQ9G5hP" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeINrHZOiKNh5pPGLFN3N1EwFGCNV2I5jLaFLnY5nF5B3rRHU1m+IjR33Wl28F" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
-    
-    <!-- Custom JavaScript -->
-    <script src="/assets/js/contact-script.js"></script>
 </body>
 </html>
