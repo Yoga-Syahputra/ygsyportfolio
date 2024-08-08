@@ -6,3 +6,4 @@
 
 # Ignore log files
 *.log
+.env
